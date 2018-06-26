@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/mogwai_bg.qm</file>
+        <file alias="de">locale/mogwai_de.qm</file>
+        <file alias="en">locale/mogwai_en.qm</file>
+        <file alias="es">locale/mogwai_es.qm</file>
+        <file alias="fi">locale/mogwai_fi.qm</file>
+        <file alias="fr">locale/mogwai_fr.qm</file>
+        <file alias="it">locale/mogwai_it.qm</file>
+        <file alias="ja">locale/mogwai_ja.qm</file>
+        <file alias="pl">locale/mogwai_pl.qm</file>
+        <file alias="pt">locale/mogwai_pt.qm</file>
+        <file alias="ru">locale/mogwai_ru.qm</file>
+        <file alias="sk">locale/mogwai_sk.qm</file>
+        <file alias="sv">locale/mogwai_sv.qm</file>
+        <file alias="vi">locale/mogwai_vi.qm</file>
+        <file alias="zh_CN">locale/mogwai_zh_CN.qm</file>
+        <file alias="zh_TW">locale/mogwai_zh_TW.qm</file>
+    </qresource>
+</RCC>

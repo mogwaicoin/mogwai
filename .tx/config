@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[mogwai.qt-translation-012x]
+file_filter = src/qt/locale/mogwai_<lang>.ts
+source_file = src/qt/locale/mogwai_en.ts
+source_lang = en

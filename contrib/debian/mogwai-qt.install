@@ -1,0 +1,6 @@
+usr/local/bin/mogwai-qt usr/bin
+share/pixmaps/mogwai32.xpm usr/share/pixmaps
+share/pixmaps/mogwai16.xpm usr/share/pixmaps
+share/pixmaps/mogwai128.png usr/share/pixmaps
+debian/mogwai-qt.desktop usr/share/applications
+debian/mogwai-qt.protocol usr/share/kde4/services/

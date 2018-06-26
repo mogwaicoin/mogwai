@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Mogwai
+Comment=Mogwai P2P Cryptocurrency
+Comment[fr]=Mogwai, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Mogwai, eşten eşe kriptografik sanal para birimi
+Exec=mogwai-qt %u
+Terminal=false
+Type=Application
+Icon=mogwai128
+MimeType=x-scheme-handler/mogwai;
+Categories=Office;Finance;
