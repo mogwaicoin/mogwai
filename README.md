@@ -20,6 +20,7 @@ the Mogwai Core software, see https://www.mogwai.org/get-mogwai/.
 
 
 License
+
 -------
 
 Mogwai Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
