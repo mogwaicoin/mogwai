@@ -65,6 +65,13 @@ int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParam
     int64_t nOldTime = pblock->nTime;
     int64_t nNewTime = std::max(pindexPrev->GetMedianTimePast()+1, GetAdjustedTime());
 
+    // avoid short-time difficulty spike in Kimoto Gravity Well
+    // but only for blocks that fall between beginning of Kimoto and beginning of Dark Gravity
+    if (pindexPrev->nHeight + 1 >= consensusParams.nPowKGWHeight &&
+            pindexPrev->nHeight + 1 < consensusParams.nPowDGWHeight) {
+        nNewTime = std::max(nNewTime, pindexPrev->GetBlockTime()+15);  // pad at least 15 seconds to prev block
+    }
+
     if (nOldTime < nNewTime)
         pblock->nTime = nNewTime;
 
