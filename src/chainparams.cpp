@@ -115,7 +115,7 @@ public:
 		consensus.BIP34Height = 1;
 		consensus.BIP34Hash = uint256S("0x000006ba48cbdecd71bc411a3e0b609f1acab9806fc652040f247c8b86831d06");
 		consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
-		consensus.nPowTargetTimespan = 60 * 60;                   // difficulty retarget 60 min
+		consensus.nPowTargetTimespan = 60 * 60;                   // difficulty retarget 10 min
 		consensus.nPowTargetSpacing = 2 * 60;                     // block each 2 min --> 720 blocks a day
 		consensus.fPowAllowMinDifficultyBlocks = false;
 		consensus.fPowNoRetargeting = false;
@@ -216,17 +216,17 @@ static CMainParams mainParams;
  *   -a neoscrypt
  *   -z "Bye-bye, Woof Woof. We are mogwais. Expect us on June 26 (2018)!"
  *   -p "047d476d8fec5e400a30657039003432293111167dc8357d1c66bcc64b7903f8eb9e4332cc073bda542e98a763d59e56e1c65563d0401a88a532d2eebed29da1b3"
- *   -t 1520451777
+ *   -t 1532424777
  *   -v 198400000000
  * 04ffff001d0104404279652d6279652c20576f6f6620576f6f662e20576520617265206d6f67776169732e20457870656374207573206f6e204a756e652032362028323031382921
  * algorithm: neoscrypt
  * merkle hash: 0x9d98b85b24d6683c4df84c74598113f2d602c02fdf693661e76cd2d801ded6ce
  * pszTimestamp: Bye-bye, Woof Woof. We are mogwais. Expect us on June 26 (2018)!
  * pubkey: 047d476d8fec5e400a30657039003432293111167dc8357d1c66bcc64b7903f8eb9e4332cc073bda542e98a763d59e56e1c65563d0401a88a532d2eebed29da1b3
- * time: 1520451777
+ * time: 1532424777
  * bits: 0x1e0ffff0
- * nonce: 202278
- * genesis hash: 0x000007345a61ed0f4a7d8a491ffc5b09e6599af85d188175c041e2ca6a3006e5
+ * nonce: 1062119
+ * genesis hash: 000008bdc1b40e9842b7dd84cd59ea24a4920a5e10d631f1fe0fe50e82250197
  */
 class CTestNetParams : public CChainParams {
 public:
@@ -258,7 +258,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 100;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x00000fa4d1976aed69f6db068b8b8f5801a86fec51e2d8aaf4b88792a9d959fe");
+        consensus.BIP34Hash = uint256S("0x000008bdc1b40e9842b7dd84cd59ea24a4920a5e10d631f1fe0fe50e82250197");
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 10 * 60; // Mogwai: every 10 min
         consensus.nPowTargetSpacing = 2 * 60;                     // block each 2 min --> 720 blocks a day
@@ -289,7 +289,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // TODO: add chainwork here
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000fa4d1976aed69f6db068b8b8f5801a86fec51e2d8aaf4b88792a9d959fe"); // TODO: add default valid block
+        consensus.defaultAssumeValid = uint256S("0x000008bdc1b40e9842b7dd84cd59ea24a4920a5e10d631f1fe0fe50e82250197"); // TODO: add default valid block
 
         pchMessageStart[0] = 0x92;
         pchMessageStart[1] = 0x70;
@@ -301,10 +301,10 @@ public:
         nDelayGetHeadersTime = 100 * 24 * 60 * 60; // Randall: max time passed since last header ...
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1532387000, 3219138, 0x1e0ffff0, 1, 1984 * COIN);
+        genesis = CreateGenesisBlock(1532424777, 1062119, 0x1e0ffff0, 1, 1984 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000fa4d1976aed69f6db068b8b8f5801a86fec51e2d8aaf4b88792a9d959fe"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5ea52e62b88366ac6a6c2514d88bd9213a1146930532681ba8b2638deb76104d"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000008bdc1b40e9842b7dd84cd59ea24a4920a5e10d631f1fe0fe50e82250197"));
+        assert(genesis.hashMerkleRoot == uint256S("0x9d98b85b24d6683c4df84c74598113f2d602c02fdf693661e76cd2d801ded6ce"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -338,8 +338,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  0, uint256S("0x00000fa4d1976aed69f6db068b8b8f5801a86fec51e2d8aaf4b88792a9d959fe")), // TODO: add checkpoints
-      1532387000,    // * UNIX timestamp of last checkpoint block
+            (  0, uint256S("0x000008bdc1b40e9842b7dd84cd59ea24a4920a5e10d631f1fe0fe50e82250197")), // TODO: add checkpoints
+      1532424777,    // * UNIX timestamp of last checkpoint block
                0,    // * total number of transactions between genesis and last checkpoint
                      //   (the tx=... number in the SetBestChain debug.log lines)
              500     // * estimated number of transactions per day after checkpoint
