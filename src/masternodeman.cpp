@@ -567,6 +567,55 @@ bool CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool f
     return mnInfoRet.fInfoValid;
 }
 
+int CMasternodeMan::GetQualifiedMasternodesInQueueForPayment(std::vector<std::pair<int, CMasternode*> >& vecMasternodePosRet, bool fFilterSigTime)
+{
+    int nCountRet = 0;
+
+    if (!masternodeSync.IsWinnersListSynced()) {
+        // without winner list we can't reliably find the next winner anyway
+        return false;
+    }
+
+    // std::vector<std::pair<int, CMasternode*> > vecMasternodeLastPaid;
+
+    /*
+        Make a vector with all of the last paid times
+    */
+
+    int nMnCount = CountMasternodes();
+    int nBlockHeight = chainActive.Height();
+
+    for (auto& mnpair : mapMasternodes) {
+        if(!mnpair.second.IsValidForPayment()) continue;
+
+        //check protocol version
+        if(mnpair.second.nProtocolVersion < mnpayments.GetMinMasternodePaymentsProto()) continue;
+
+        //it's in the list (up to 8 entries ahead of current block to allow propagation) -- so let's skip it
+        if(mnpayments.IsScheduled(mnpair.second, nBlockHeight)) continue;
+
+        //it's too new, wait for a cycle
+        if(fFilterSigTime && mnpair.second.sigTime + (nMnCount*2.6*60) > GetAdjustedTime()) continue;
+
+        //make sure it has at least as many confirmations as there are masternodes
+        if(GetUTXOConfirmations(mnpair.first) < nMnCount) continue;
+
+        vecMasternodePosRet.push_back(std::make_pair(mnpair.second.GetLastPaidBlock(), &mnpair.second));
+    }
+
+    nCountRet = (int)vecMasternodePosRet.size();
+
+    //when the network is in the process of upgrading, don't penalize nodes that recently restarted
+    if(fFilterSigTime && nCountRet < nMnCount/3)
+        return GetQualifiedMasternodesInQueueForPayment(vecMasternodePosRet, false);
+
+    // Sort them low to high
+    sort(vecMasternodePosRet.begin(), vecMasternodePosRet.end(), CompareLastPaidBlock());
+
+    return nCountRet;
+}
+
+
 masternode_info_t CMasternodeMan::FindRandomNotInVec(const std::vector<COutPoint> &vecToExclude, int nProtocolVersion)
 {
     LOCK(cs);
@@ -693,6 +742,7 @@ bool CMasternodeMan::GetMasternodeRanks(CMasternodeMan::rank_pair_vec_t& vecMast
 
     return true;
 }
+
 
 void CMasternodeMan::ProcessMasternodeConnections(CConnman& connman)
 {

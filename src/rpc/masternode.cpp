@@ -452,7 +452,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
     if (fHelp || (
                 strMode != "activeseconds" && strMode != "addr" && strMode != "full" && strMode != "info" &&
                 strMode != "lastseen" && strMode != "lastpaidtime" && strMode != "lastpaidblock" &&
-                strMode != "protocol" && strMode != "payee" && strMode != "pubkey" &&
+                strMode != "protocol" && strMode != "payee" && strMode != "pubkey" && strMode != "qualified" &&
                 strMode != "rank" && strMode != "status"))
     {
         throw std::runtime_error(
@@ -468,6 +468,7 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
                 "  addr           - Print ip address associated with a masternode (can be additionally filtered, partial match)\n"
                 "  full           - Print info in format 'status protocol payee lastseen activeseconds lastpaidtime lastpaidblock IP'\n"
                 "                   (can be additionally filtered, partial match)\n"
+                "  qualified      - Print 'full' list, but only for masternodes qualified for payment.  The top 10% are eligible for next payment\n"
                 "  info           - Print info in format 'status protocol payee lastseen activeseconds sentinelversion sentinelstate IP'\n"
                 "                   (can be additionally filtered, partial match)\n"
                 "  lastpaidblock  - Print the last block height a node was paid on the network\n"
@@ -501,7 +502,30 @@ UniValue masternodelist(const UniValue& params, bool fHelp)
             if (strFilter !="" && strOutpoint.find(strFilter) == std::string::npos) continue;
             obj.push_back(Pair(strOutpoint, s.first));
         }
-    } else {
+    }
+    else if (strMode == "qualified") {
+        std::vector<std::pair<int, CMasternode*> > vMasternodePos;
+        mnodeman.GetQualifiedMasternodesInQueueForPayment(vMasternodePos, true);
+        BOOST_FOREACH(PAIRTYPE(int, CMasternode*)& s, vMasternodePos) {
+            CMasternode mn = *(s.second);
+            std::string strOutpoint = mn.vin.prevout.ToStringShort();
+            std::ostringstream streamFull;
+            streamFull << std::setw(18) <<
+                           mn.GetStatus() << " " <<
+                           mn.nProtocolVersion << " " <<
+                           CBitcoinAddress(mn.pubKeyCollateralAddress.GetID()).ToString() << " " <<
+                           (int64_t)mn.lastPing.sigTime << " " << std::setw(8) <<
+                           (int64_t)(mn.lastPing.sigTime - mn.sigTime) << " " << std::setw(10) <<
+                           mn.GetLastPaidTime() << " "  << std::setw(6) <<
+                           mn.GetLastPaidBlock() << " " <<
+                           mn.addr.ToString();
+            std::string strFull = streamFull.str();
+            if (strFilter !="" && strFull.find(strFilter) == std::string::npos &&
+                strOutpoint.find(strFilter) == std::string::npos) continue;
+            obj.push_back(Pair(strOutpoint, strFull));
+        }
+    }
+    else {
         std::map<COutPoint, CMasternode> mapMasternodes = mnodeman.GetFullMasternodeMap();
         for (auto& mnpair : mapMasternodes) {
             CMasternode mn = mnpair.second;

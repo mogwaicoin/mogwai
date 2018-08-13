@@ -102,7 +102,7 @@ public:
             READWRITE(strVersion);
         }
         else {
-            strVersion = SERIALIZATION_VERSION_STRING; 
+            strVersion = SERIALIZATION_VERSION_STRING;
             READWRITE(strVersion);
         }
 
@@ -170,6 +170,8 @@ public:
     bool GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCountRet, masternode_info_t& mnInfoRet);
     /// Same as above but use current block height
     bool GetNextMasternodeInQueueForPayment(bool fFilterSigTime, int& nCountRet, masternode_info_t& mnInfoRet);
+    /// Get the qualified current masternodes (eligible for payment)
+    int GetQualifiedMasternodesInQueueForPayment(std::vector<std::pair<int, CMasternode*> >& vecMasternodePosRet, bool fFilterSigTime);
 
     /// Find a random entry
     masternode_info_t FindRandomNotInVec(const std::vector<COutPoint> &vecToExclude, int nProtocolVersion = -1);
