@@ -23,7 +23,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
     unitlist.append(MOGWAI);
     unitlist.append(mMOGWAI);
     unitlist.append(uMOGWAI);
-    unitlist.append(duffs);
+    unitlist.append(puffs);
     return unitlist;
 }
 
@@ -34,7 +34,7 @@ bool BitcoinUnits::valid(int unit)
     case MOGWAI:
     case mMOGWAI:
     case uMOGWAI:
-    case duffs:
+    case puffs:
         return true;
     default:
         return false;
@@ -50,7 +50,7 @@ QString BitcoinUnits::name(int unit)
             case MOGWAI: return QString("MOG");
             case mMOGWAI: return QString("mMOG");
             case uMOGWAI: return QString::fromUtf8("μMOG");
-            case duffs: return QString("puffs");
+            case puffs: return QString("puffs");
             default: return QString("???");
         }
     }
@@ -61,7 +61,7 @@ QString BitcoinUnits::name(int unit)
             case MOGWAI: return QString("tMOG");
             case mMOGWAI: return QString("mtMOG");
             case uMOGWAI: return QString::fromUtf8("μtMOG");
-            case duffs: return QString("tmpuffs");
+            case puffs: return QString("tmpuffs");
             default: return QString("???");
         }
     }
@@ -76,7 +76,7 @@ QString BitcoinUnits::description(int unit)
             case MOGWAI: return QString("Mogwai");
             case mMOGWAI: return QString("Milli-Mogwai (1 / 1" THIN_SP_UTF8 "000)");
             case uMOGWAI: return QString("Micro-Mogwai (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-Mogwai (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case puffs: return QString("Ten Nano-Mogwai (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -87,7 +87,7 @@ QString BitcoinUnits::description(int unit)
             case MOGWAI: return QString("TestMogwais");
             case mMOGWAI: return QString("Milli-TestMogwai (1 / 1" THIN_SP_UTF8 "000)");
             case uMOGWAI: return QString("Micro-TestMogwai (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-TestMogwai (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case puffs: return QString("Ten Nano-TestMogwai (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -100,7 +100,7 @@ qint64 BitcoinUnits::factor(int unit)
     case MOGWAI:  return 100000000;
     case mMOGWAI: return 100000;
     case uMOGWAI: return 100;
-    case duffs: return 1;
+    case puffs: return 1;
     default:   return 100000000;
     }
 }
@@ -112,7 +112,7 @@ int BitcoinUnits::decimals(int unit)
     case MOGWAI: return 8;
     case mMOGWAI: return 5;
     case uMOGWAI: return 2;
-    case duffs: return 0;
+    case puffs: return 0;
     default: return 0;
     }
 }
