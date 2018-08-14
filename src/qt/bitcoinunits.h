@@ -61,7 +61,7 @@ public:
         MOGWAI,
         mMOGWAI,
         uMOGWAI,
-        duffs
+        puffs
     };
 
     enum SeparatorStyle

@@ -761,8 +761,8 @@ Address: %4
         <translation>中高</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 duff(s) per input.</source>
-        <translation>每笔输入可能会有 +/- %1个duff(s)的偏差.</translation>
+        <source>Can vary +/- %1 puff(s) per input.</source>
+        <translation>每笔输入可能会有 +/- %1个puff(s)的偏差.</translation>
     </message>
     <message>
         <source>n/a</source>
@@ -2277,15 +2277,15 @@ https://www.transifex.com/projects/p/mogwai/</translation>
         <translation>最小化</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 puffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 puffs in fee,&lt;br /&gt;while "at least" pays 1000 puffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>
-如果自定手续费设定为1000 duffs,而交易信息只有250字节的话,那么选择"每千位字节"就只会支付250 duffs的手续费,&lt;br /&gt;而"至少"会支付1000 duffs.
+如果自定手续费设定为1000 puffs,而交易信息只有250字节的话,那么选择"每千位字节"就只会支付250 puffs的手续费,&lt;br /&gt;而"至少"会支付1000 puffs.
 但如果交易信息大于一千字节,那么两者都要支付千字节费用.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "total at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 puffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 puffs in fee,&lt;br /&gt;while "total at least" pays 1000 puffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>
-如果自定手续费设定为1000 duffs,而交易信息只有250字节的话,那么选择"每千位字节"就只会支付250 duffs的手续费,&lt;br /&gt;而"总共至少"会支付1000 duffs.
+如果自定手续费设定为1000 puffs,而交易信息只有250字节的话,那么选择"每千位字节"就只会支付250 puffs的手续费,&lt;br /&gt;而"总共至少"会支付1000 puffs.
 但如果交易信息大于一千字节,那么两者都要支付千字节费用.</translation>
     </message>
     <message>
