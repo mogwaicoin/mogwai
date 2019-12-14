@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-/*
+
 #include "consensus/validation.h"
 #include "key.h"
 #include "validation.h"
@@ -28,7 +28,6 @@ ToMemPool(CMutableTransaction& tx)
 
 BOOST_FIXTURE_TEST_CASE(tx_mempool_block_doublespend, TestChain100Setup)
 {
-    BOOST_FAIL("This test is disabled until it can be fixed");
     // Make sure skipping validation of transctions that were
     // validated going into the memory pool does not allow
     // double-spends in blocks to pass validation when they should not.
@@ -85,4 +84,3 @@ BOOST_FIXTURE_TEST_CASE(tx_mempool_block_doublespend, TestChain100Setup)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-*/
