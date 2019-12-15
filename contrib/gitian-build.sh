@@ -187,8 +187,8 @@ fi
 # Check for OSX SDK
 if [[ ! -e "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" && $osx == true ]]
 then
-    echo "Cannot build for OSX, SDK does not exist. Will build for other OSes"
-    osx=false
+	echo "Fetching MacOSX10.11.sdk.tar.gz"
+	curl -o "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" "https://github.com/MZaf/MacOSX10.11.sdk/blob/master/MacOSX10.11.sdk.tar.gz"
 fi
 
 # Get signer
