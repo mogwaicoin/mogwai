@@ -188,7 +188,7 @@ fi
 if [[ ! -e "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" && $osx == true ]]
 then
 	echo "Fetching MacOSX10.11.sdk.tar.gz"
-	curl -o "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" "https://github.com/shannon1916/MacOSX10.11.sdk.tar.gz/raw/master/MacOSX10.11.sdk.tar.gz"
+	curl -o "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" "https://raw.githubusercontent.com/shannon1916/MacOSX10.11.sdk.tar.gz/master/MacOSX10.11.sdk.tar.gz"
 fi
 
 # Get signer
