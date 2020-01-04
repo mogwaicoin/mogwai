@@ -8,6 +8,7 @@ architectures:
 packages: 
 - "ca-certificates"
 - "curl"
+- "gobjc++"
 - "g++"
 - "git-core"
 - "pkg-config"
