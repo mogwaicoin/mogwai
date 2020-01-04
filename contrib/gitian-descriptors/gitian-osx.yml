@@ -76,7 +76,7 @@ script: |
 
   mkdir -p ${BASEPREFIX}/SDKs
   tar -C ${BASEPREFIX}/SDKs -xf ${BUILD_DIR}/MacOSX10.11.sdk.tar.gz
-  cp -R ${BASEPREFIX}/SDKs/MacOSX10.11.sdk ${BASEPREFIX}/SDKs/MacOSX10.9.sdk
+  ln -s ${BASEPREFIX}/SDKs/MacOSX10.11.sdk ${BASEPREFIX}/SDKs/MacOSX10.9.sdk
 
   # Build dependencies for each host
   for i in $HOSTS; do
