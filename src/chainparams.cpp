@@ -188,10 +188,18 @@ public:
         strSporkPubKey = "04f43eeb3bf7ab96dd377506aaa5cb1b7f234410578fbbed9985204c386b9a099cd12e94986a8a5ac7d9decbac7846fefab06d7c4de153ddfd485c7e841590ed35";
 
         checkpointData = (CCheckpointData){
-            boost::assign::map_list_of(100, uint256S("0x00000f7507d7ec543e61914078aec2ff1f97aa005855421746a9b1dad4b0e751")),
-            1529943799, // * UNIX timestamp of last checkpoint block
-            0,          // * total number of transactions between genesis and last checkpoint
-            //   (the tx=... number in the SetBestChain debug.log lines)
+            boost::assign::map_list_of
+            (   100, uint256S("0x00000f7507d7ec543e61914078aec2ff1f97aa005855421746a9b1dad4b0e751"))
+            ( 50000, uint256S("0x000000007689b91e504a117ecdb4bfcfd1af46b851b58e52635c6a3026b2bcef"))
+            (100000, uint256S("0x000000001f86ef34f1e53db616f31802502bdd0de2c7bfa68836465eb1c764be"))
+            (150000, uint256S("0x0000000062f17e34e0806f6ae2bde88cf54c63b42257e6d1883f1805770337de"))
+            (200000, uint256S("0x00000001f921aeeb604d400bf05191f0d439dd23b1c6f53beecc746e8d32bcb9"))
+            (250000, uint256S("0x00000000ac8f53b92ca6f71fe90caaa6fa5f9cd3d69c4d9baafcdb05c2ff1bcc"))
+            (300000, uint256S("0x0000000018369e433a00fd9f6aac39658edd8dd0e344e88064c9349fa959ceaa"))
+            (346672, uint256S("0x0000000003fe4fbaa9351ee4defa6f847178b97e72c857dd517288a5aaf305b7")),
+            1578215846, // * UNIX timestamp of last checkpoint block
+            437991,     // * total number of transactions between genesis and last checkpoint
+                        //   (the tx=... number in the SetBestChain debug.log lines)
             5000 // * estimated number of transactions per day after checkpoint
         };
     }
