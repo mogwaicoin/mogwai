@@ -185,10 +185,10 @@ then
 fi
 
 # Check for OSX SDK
-if [[ ! -e "gitian-builder/inputs/MacOSX10.9.sdk.tar.xz" && $osx == true ]]
+if [[ ! -e "gitian-builder/inputs/MacOSX10.9.sdk.tar.gz" && $osx == true ]]
 then
-	echo "Fetching MacOSX10.9.sdk.tar.xz"
-	curl -L -o "gitian-builder/inputs/MacOSX10.9.sdk.tar.xz" "https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz"
+	echo "Fetching MacOSX10.9.sdk.tar.gz"
+	curl -L -o "gitian-builder/inputs/MacOSX10.9.sdk.tar.gz" "https://bitcoincore.org/depends-sources/sdks/MacOSX10.9.sdk.tar.gz"
 fi
 
 # Get signer
