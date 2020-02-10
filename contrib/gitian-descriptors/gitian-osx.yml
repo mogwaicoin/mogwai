@@ -33,7 +33,7 @@ remotes:
 - "url": "https://github.com/mogwaicoin/mogwai.git"
   "dir": "mogwai"
 files:
-- "MacOSX10.9.sdk.tar.xz"
+- "MacOSX10.9.sdk.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   HOSTS="x86_64-apple-darwin11"
@@ -82,7 +82,7 @@ script: |
   BASEPREFIX=`pwd`/depends
 
   mkdir -p ${BASEPREFIX}/SDKs
-  tar -C ${BASEPREFIX}/SDKs -xf ${BUILD_DIR}/MacOSX10.9.sdk.tar.xz
+  tar -C ${BASEPREFIX}/SDKs -xf ${BUILD_DIR}/MacOSX10.9.sdk.tar.gz
 
   # Build dependencies for each host
   for i in $HOSTS; do
