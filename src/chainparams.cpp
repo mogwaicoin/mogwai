@@ -85,7 +85,7 @@ public:
         consensus.nBabaSubsidyFactor = 1;
 
         consensus.nSubsidyHalvingInterval = 365 * 720; // Number of blocks to pass, for the next halving to be applied
-        consensus.nSubsidyHalvingDeclinePerc = 14;     // Percent of decline on halving interval x %
+        consensus.nSubsidyHalvingDeclinePerc = 50;     // Percent of decline on halving interval x %
         consensus.nMasternodePaymentsStartBlock = 0;
 
         consensus.nInstantSendKeepLock = 24;
