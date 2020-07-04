@@ -14,10 +14,10 @@ windows=false
 osx=false
 
 # Other Basic variables
-SIGNER=RandallPeltzer
+SIGNER=
 VERSION=
 commit=true
-url=https://randallpeltzer@bitbucket.org/mogwaicoin/mogwai.git
+url=https://github.com/mogwaicoin/mogwai.git
 proc=2
 mem=2000
 lxc=true
@@ -57,36 +57,36 @@ EOF
 # Get options and arguments
 while :; do
     case $1 in
-        # Verify
-        -v|--verify)
+	# Verify
+	-v|--verify)
 	    verify=true
-            ;;
-        # Build
-        -b|--build)
+		;;
+	# Build
+	-b|--build)
 	    build=true
-            ;;
-        # Sign binaries
-        -s|--sign)
+		;;
+	# Sign binaries
+	-s|--sign)
 	    sign=true
-            ;;
-        # Build then Sign
-        -B|--buildsign)
+		;;
+	# Build then Sign
+	-B|--buildsign)
 	    sign=true
 	    build=true
-            ;;
-        # PGP Signer
-        -S|--signer)
+		;;
+	# PGP Signer
+	-S|--signer)
 	    if [ -n "$2" ]
 	    then
-		SIGNER=$2
-		shift
+			SIGNER=$2
+			shift
 	    else
 		echo 'Error: "--signer" requires a non-empty argument.'
 		exit 1
 	    fi
-           ;;
-        # Operating Systems
-        -o|--os)
+	   ;;
+	# Operating Systems
+	-o|--os)
 	    if [ -n "$2" ]
 	    then
 		linux=false
@@ -123,8 +123,8 @@ while :; do
 	-j)
 	    if [ -n "$2" ]
 	    then
-		proc=$2
-		shift
+			proc=$2
+			shift
 	    else
 		echo 'Error: "-j" requires an argument'
 		exit 1
@@ -134,8 +134,8 @@ while :; do
 	-m)
 	    if [ -n "$2" ]
 	    then
-		mem=$2
-		shift
+			mem=$2
+			shift
 	    else
 		echo 'Error: "-m" requires an argument'
 		exit 1
@@ -145,32 +145,32 @@ while :; do
 	-u)
 	    if [ -n "$2" ]
 	    then
-		url=$2
-		shift
+			url=$2
+			shift
 	    else
 		echo 'Error: "-u" requires an argument'
 		exit 1
 	    fi
 	    ;;
         # kvm
-        --kvm)
-            lxc=false
-            ;;
-        # Detach sign
-        --detach-sign)
-            signProg="true"
-            commitFiles=false
-            ;;
-        # Commit files
-        --no-commit)
-            commitFiles=false
-            ;;
-        # Setup
-        --setup)
-            setup=true
-            ;;
+	--kvm)
+		lxc=false
+		;;
+	# Detach sign
+	--detach-sign)
+		signProg="true"
+		commitFiles=false
+		;;
+	# Commit files
+	--no-commit)
+		commitFiles=false
+		;;
+	# Setup
+	--setup)
+		setup=true
+		;;
 	*)               # Default case: If no more options then break out of the loop.
-             break
+		break
     esac
     shift
 done
@@ -179,13 +179,16 @@ done
 if [[ $lxc = true ]]
 then
     export USE_LXC=1
+	export LXC_BRIDGE=lxcbr0
+	export GITIAN_HOST_IP=10.0.3.1
+	export LXC_GUEST_IP=10.0.3.5
 fi
 
 # Check for OSX SDK
-if [[ ! -e "gitian-builder/inputs/MacOSX10.11.sdk.tar.gz" && $osx == true ]]
+if [[ ! -e "gitian-builder/inputs/MacOSX10.9.sdk.tar.gz" && $osx == true ]]
 then
-    echo "Cannot build for OSX, SDK does not exist. Will build for other OSes"
-    osx=false
+	echo "Fetching MacOSX10.9.sdk.tar.gz"
+	curl -L -o "gitian-builder/inputs/MacOSX10.9.sdk.tar.gz" "https://bitcoincore.org/depends-sources/sdks/MacOSX10.9.sdk.tar.gz"
 fi
 
 # Get signer
@@ -229,10 +232,10 @@ echo ${COMMIT}
 # Setup build environment
 if [[ $setup = true ]]
 then
-    sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://bitbucket.org/randallpeltzer/gitian.sigs.git
-    git clone https://bitbucket.org/randallpeltzer/mogwai-detached-sigs.git
-    git clone https://bitbucket.org/randallpeltzer/gitian-builder.git
+    sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils curl
+    git clone --depth 1 https://github.com/mogwaicoin/gitian.sigs.git
+    git clone --depth 1 https://github.com/mogwaicoin/mogwai-detached-sigs.git
+    git clone --depth 1 https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
     then
